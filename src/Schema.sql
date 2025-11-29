@@ -1,3 +1,13 @@
+DROP TABLE IF EXISTS movie_links CASCADE;
+DROP TABLE IF EXISTS genome_scores CASCADE;
+DROP TABLE IF EXISTS genome_tags CASCADE;
+DROP TABLE IF EXISTS user_tags CASCADE;
+DROP TABLE IF EXISTS ratings CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS movie_genres CASCADE;
+DROP TABLE IF EXISTS genres CASCADE;
+DROP TABLE IF EXISTS movies CASCADE;
+
 CREATE TABLE movies (
     movie_id     INTEGER PRIMARY KEY,
     title        TEXT    NOT NULL,
@@ -53,6 +63,5 @@ CREATE TABLE movie_links (
     movie_id INTEGER PRIMARY KEY REFERENCES movies(movie_id) ON DELETE CASCADE,
     imdb_id  INTEGER,
     tmdb_id  INTEGER,
-    UNIQUE (imdb_id),
-    UNIQUE (tmdb_id)
+    UNIQUE (imdb_id)
 );
