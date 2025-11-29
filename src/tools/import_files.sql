@@ -2,7 +2,7 @@
 \timing on
 
 -- point to your CSV dir
-\set data_dir '/home/lenka/Documents/TU/DB/DBProject/data/ml-25m-normalized'
+\set data_dir 'absolute_path/data/ml-25m-normalized'
 \echo Using CSV directory: :data_dir
 \cd :data_dir
 

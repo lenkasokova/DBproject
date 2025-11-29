@@ -1,7 +1,7 @@
 \set ON_ERROR_STOP on
 \timing on
 
-\set data_dir '/home/lenka/Documents/TU/DB/DBProject/data/results' -- change path
+\set data_dir 'absolute_path/data/results' -- change path
 \echo Using CSV directory: :data_dir
 \cd :data_dir
 
