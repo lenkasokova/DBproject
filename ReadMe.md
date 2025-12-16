@@ -34,13 +34,13 @@ psql -U <user> -d movielens -f src/Schema.sql
 
 If you prefer to run ingestion in **pgAdmin’s Query Tool**, use the pgAdmin-friendly script:
 
-1) Put the normalized CSVs on your computer.
-2) Open `src/tools/02_ingest_pgadmin.sql` and replace **`ABS_PATH`** with that absolute folder path.
+1) Put the normalized CSVs on your computer in folder `data/`.
+2) Open `src/tools/import_files.sql` and replace every occurrence of **`absolute_path/data/...`** with the full absolute path to that folder.
 3) Run the script in pgAdmin.
 
 ### Otherwise:
 
-Edit `src/tools/import_files.sql` and set the CSV directory:
+Edit `src/tools/import_files_postgre.sql` and set the CSV directory:
 
 ```bash
 \set data_dir '/absolute/path/to/your/ml-25m-normalized'
@@ -49,7 +49,7 @@ Edit `src/tools/import_files.sql` and set the CSV directory:
 then run:
 
 ```bash
-psql -U <user> -d movielens -f src/tools/import_files.sql
+psql -U <user> -d movielens -f src/tools/import_files_postgre.sql
 ```
 
 ## Save results from queries
