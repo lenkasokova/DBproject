@@ -1,32 +1,33 @@
 COPY public.users(user_id)
 FROM '/absolute_path/data/ml-25m-normalized/users.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 COPY public.movies(movie_id, title, release_year)
 FROM '/absolute_path/data/ml-25m-normalized/movies.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 COPY public.genres(genre_id, genre_name)
 FROM '/absolute_path/data/ml-25m-normalized/genres.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 COPY public.movie_genres(movie_id, genre_id)
 FROM '/absolute_path/data/ml-25m-normalized/movie_genres.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 COPY public.movie_links(movie_id, imdb_id, tmdb_id)
 FROM '/absolute_path/data/ml-25m-normalized/movie_links.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 COPY public.genome_tags(tag_id, tag_name)
 FROM '/absolute_path/data/ml-25m-normalized/genome_tags.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 COPY public.genome_scores(movie_id, tag_id, relevance)
 FROM '/absolute_path/data/ml-25m-normalized/genome_scores.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 DROP TABLE IF EXISTS public.ratings_raw;
+
 CREATE TABLE public.ratings_raw (
   "userId"    int,
   "movieId"   int,
@@ -36,7 +37,7 @@ CREATE TABLE public.ratings_raw (
 
 COPY public.ratings_raw("userId","movieId",rating,"timestamp")
 FROM '/absolute_path/data/ml-25m-normalized/ratings.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 INSERT INTO public.ratings(user_id, movie_id, rating, rated_at)
 SELECT
@@ -47,6 +48,7 @@ SELECT
 FROM public.ratings_raw;
 
 DROP TABLE IF EXISTS public.user_tags_raw;
+
 CREATE TABLE public.user_tags_raw (
   "userId"    int,
   "movieId"   int,
@@ -56,7 +58,7 @@ CREATE TABLE public.user_tags_raw (
 
 COPY public.user_tags_raw("userId","movieId","tag","timestamp")
 FROM '/absolute_path/data/ml-25m-normalized/user_tags.csv'
-WITH (FORMAT csv, HEADER true);
+WITH (FORMAT csv, HEADER true, DELIMITER ';');
 
 INSERT INTO public.user_tags(user_id, movie_id, tag_text, tagged_at)
 SELECT
